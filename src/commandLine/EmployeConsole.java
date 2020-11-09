@@ -51,7 +51,5 @@ public class EmployeConsole
 	private Option changerPassword(final Employe employe)
 	{
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
-	}
-	
-
+	}	
 }
