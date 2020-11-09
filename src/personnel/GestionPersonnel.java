@@ -8,11 +8,11 @@ import java.util.TreeSet;
 /**
  * Gestion du personnel. Un seul objet de cette classe existe.
  * Il n'est pas possible d'instancier directement cette classe, 
- * la mÃ©thode {@link #getGestionPersonnel getGestionPersonnel} 
- * le fait automatiquement et retourne toujours le mÃªme objet.
- * Dans le cas oÃ¹ {@link #sauvegarder()} a Ã©tÃ© appelÃ© lors 
- * d'une exÃ©cution prÃ©cÃ©dente, c'est l'objet sauvegardÃ© qui est
- * retournÃ©.
+ * la méthode {@link #getGestionPersonnel getGestionPersonnel} 
+ * le fait automatiquement et retourne toujours le même objet.
+ * Dans le cas où {@link #sauvegarder()} à été appelé lors 
+ * d'une exécution précédente, c'est l'objet sauvegardé qui est
+ * retourné.
  */
 
 public class GestionPersonnel implements Serializable
@@ -27,7 +27,7 @@ public class GestionPersonnel implements Serializable
 	
 	/**
 	 * Retourne l'unique instance de cette classe.
-	 * CrÃ©e cet objet s'il n'existe dÃ©jÃ .
+	 * Crée cet objet s'il n'existe déjÃ .
 	 * @return l'unique objet de type {@link GestionPersonnel}.
 	 */
 	
@@ -45,7 +45,7 @@ public class GestionPersonnel implements Serializable
 	public GestionPersonnel()
 	{
 		if (gestionPersonnel != null)
-			throw new RuntimeException("Vous ne pouvez crÃ©er qu'une seuls instance de cet objet.");
+			throw new RuntimeException("Vous ne pouvez créer qu'une seuls instance de cet objet.");
 		ligues = new TreeSet<>();
 		gestionPersonnel = this;
 	}
@@ -58,7 +58,7 @@ public class GestionPersonnel implements Serializable
 	/**
 	 * Retourne la ligue dont administrateur est l'administrateur,
 	 * null s'il n'est pas un administrateur.
-	 * @param administrateur l'administrateur de la ligue recherchÃ©e.
+	 * @param administrateur l'administrateur de la ligue recherchée.
 	 * @return la ligue dont administrateur est l'administrateur.
 	 */
 	
@@ -71,8 +71,8 @@ public class GestionPersonnel implements Serializable
 	}
 
 	/**
-	 * Retourne toutes les ligues enregistrÃ©es.
-	 * @return toutes les ligues enregistrÃ©es.
+	 * Retourne toutes les ligues enregistrées.
+	 * @return toutes les ligues enregistrées.
 	 */
 	
 	public SortedSet<Ligue> getLigues()
