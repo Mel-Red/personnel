@@ -6,6 +6,7 @@ import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.Employe;
+import personnel.ImpossibleDeChangerDate;
 
 public class EmployeConsole 
 {
@@ -57,7 +58,11 @@ public class EmployeConsole
 	
 	private Option changerDateDepart(final Employe employe)
 	{
-		return new Option("Changer la date de départ", "t", () -> {employe.setDateDepart(getString("Nouvelle date de départ : "));});
+		return new Option("Changer la date de départ", "t", () -> {try {
+			employe.setDateDepart(getString("Nouvelle date de départ : "));
+		} catch (ImpossibleDeChangerDate e) {
+			e.printStackTrace();
+		}});
 	}
 	
 	private Option changerPassword(final Employe employe)

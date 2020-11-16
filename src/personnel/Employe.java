@@ -144,9 +144,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public String getDateDepart()
 	{
-		if (dateDepart != null)
 			return dateDepart.toString();
-		else return "";
 	}
 	
 	/**
@@ -154,10 +152,15 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @return la date de départ de l'employé.
 	 */
 
-	public void setDateDepart(String dateDepart)
+	public void setDateDepart(String dateDepart) throws ImpossibleDeChangerDate
 	{
-		this.dateDepart = LocalDate.parse(dateDepart);
+		boolean isBefore = LocalDate.parse(dateDepart).isBefore(dateArrivee);
+		if (isBefore = true)
+			throw new ImpossibleDeChangerDate("La date de départ est précédente de la date d'arrivée");
+		else
+			this.dateDepart = LocalDate.parse(dateDepart);
 	}
+	
 
 	/**
 	 * Retourne vrai ssi le password passé en paramètre est bien celui
