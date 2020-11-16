@@ -1,6 +1,7 @@
 package personnel;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -115,9 +116,13 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		return employe;
 	}
 	
-	void remove(Employe employe)
+	public void remove(Employe employe)
 	{
 		employes.remove(employe);
+	}
+	
+	public boolean hasEmploye(Employe employe) {
+		return employes.contains(employe);
 	}
 	
 	/**

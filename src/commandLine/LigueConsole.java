@@ -94,7 +94,7 @@ public class LigueConsole
 	
 	private Option ajouterEmploye(final Ligue ligue)
 	{
-		return new Option("ajouter un employé", "a",
+		return new Option("Ajouter un employé", "a",
 				() -> 
 				{
 					ligue.addEmploye(getString("nom : "), 
