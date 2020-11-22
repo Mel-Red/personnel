@@ -91,7 +91,11 @@ class testLigue
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
-		employe.setDateArrivee("2020-10-20");
+		try {
+			employe.setDateArrivee("2020-10-20");
+		} catch (ImpossibleDeChangerDate e) {
+			e.printStackTrace();
+		}
 		assertEquals(employe.getDateArrivee(), "2020-10-20");
 	}
 	
@@ -100,7 +104,11 @@ class testLigue
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
-		employe.setDateDepart("2021-10-20");
+		try {
+			employe.setDateDepart("2021-10-20");
+		} catch (ImpossibleDeChangerDate e) {
+			e.printStackTrace();
+		}
 		assertEquals(employe.getDateDepart(), "2021-10-20");
 	}
 	
