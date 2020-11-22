@@ -5,25 +5,26 @@ USE personnel;
 
 CREATE TABLE employe
 (
-	code_e int(6);
+	idE int(6);
 	nom_e varchar(15);
 	prenom_e varchar(15);
 	mail_e varchar(50);
-	ligue_e int(6);
-	Date_arrivée_e Date; 
+	Date_arrivee_e Date; 
+	Date_depart Date;
 	Mdp_e varchar(50);
+	EstAdmin boolean;
 )
 ENGINE=INNODB;
 
 CREATE TABLE ligue
 (
-	code_ligue int(6);
+	idL int(6);
 	nom_ligue varchar(25);
-	code_admin int(6);
-	nom_admin varchar (15);
-	prenom_admin varchar(15);
 )
 ENGINE=INNODB;
+
+
+
 
 
 CREATE TABLE admin_ligue
