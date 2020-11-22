@@ -53,7 +53,11 @@ public class EmployeConsole
 	
 	private Option changerDateArrivee(final Employe employe)
 	{
-		return new Option("Changer la date d'arrivee", "d", () -> {employe.setDateArrivee(getString("Nouvelle date d'arrivée : "));});
+		return new Option("Changer la date d'arrivee", "d", () -> {try {
+			employe.setDateArrivee(getString("Nouvelle date d'arrivée : "));
+		} catch (ImpossibleDeChangerDate e) {
+			e.printStackTrace();
+		}});
 	}
 	
 	private Option changerDateDepart(final Employe employe)
