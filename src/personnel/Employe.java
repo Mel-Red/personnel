@@ -136,6 +136,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		boolean isAfter = temp.isAfter(dateDepart);
 		if (isAfter)
 			throw new ImpossibleDeChangerDate();
+		
 		else
 			this.dateArrivee = temp;
 	}
