@@ -13,6 +13,7 @@ CREATE TABLE employe
 	Date_depart Date;
 	Mdp_e varchar(50);
 	EstAdmin boolean;
+	EstRoot boolean;
 )
 ENGINE=INNODB;
 
@@ -20,18 +21,5 @@ CREATE TABLE ligue
 (
 	idL int(6);
 	nom_ligue varchar(25);
-)
-ENGINE=INNODB;
-
-
-
-
-
-CREATE TABLE admin_ligue
-(
-	code_emp int(6);
-	code_admin int(6);
-	code_ligue int(6);
-	mdp_admin varchar(50);
 )
 ENGINE=INNODB;
