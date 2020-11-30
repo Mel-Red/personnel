@@ -1,26 +1,25 @@
-DROP DATABASE IF EXIST personnel;
+DROP DATABASE personnel;
 CREATE DATABASE personnel;
-
 USE personnel;
 
 CREATE TABLE employe
 (
-	idE int(6);
-	nom_e varchar(15);
-	prenom_e varchar(15);
-	mail_e varchar(50);
-	Date_arrivee_e Date; 
-	Date_depart Date;
-	Mdp_e varchar(50);
-	EstAdmin boolean;
-	EstRoot boolean;
-	idL int(6);
+	idE int(6),
+	nomE varchar(15),
+	prenomE varchar(15),
+	mailE varchar(50),
+	DateA Date, 
+	DateD Date,
+	MdpE varchar(50),
+	EstAdmin boolean,
+	EstRoot boolean,
+	idLigue int(6)
 )
 ENGINE=INNODB;
 
 CREATE TABLE ligue
 (
-	idL int(6);
-	nom_ligue varchar(25);
+	idL int(6),
+	nomL varchar(25)
 )
 ENGINE=INNODB;
