@@ -13,6 +13,7 @@ CREATE TABLE employe
 	Date_depart Date;
 	Mdp_e varchar(50);
 	EstAdmin boolean;
+	EstRoot boolean;
 	idL int(6);
 )
 ENGINE=INNODB;
