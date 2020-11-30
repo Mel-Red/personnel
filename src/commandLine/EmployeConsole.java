@@ -2,17 +2,48 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
+import java.util.ArrayList;
+
+import commandLineMenus.List;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.Employe;
 import personnel.ImpossibleDeChangerDate;
+import personnel.Ligue;
 
 public class EmployeConsole 
 {
+	
+	private Option afficherEmployes(final Ligue ligue)
+	{
+		return new Option("Afficher les employes", "l", () -> {System.out.println(ligue.getEmployes());});
+	}
+	
+	/*private Option ajouterEmploye(final Ligue ligue)
+	{
+		return new Option("Ajouter un employé", "a",
+				() -> 
+				{
+					ligue.addEmploye(getString("nom : "), 
+						getString("prenom : "), getString("mail : "), 
+						getString("password : "));
+				}
+		);
+	}*/
+	
 	private Option afficher(final Employe employe)
 	{
 		return new Option("Afficher l'employé", "l", () -> {System.out.println(employe);});
+	}
+	
+	Menu gererEmployeSelectione(Employe employe)
+	{
+		Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
+		menu.add(editerEmploye(employe));
+		menu.add(supprimer(employe));
+		menu.addBack("q");
+		return menu;
 	}
 
 	ListOption<Employe> editerEmploye()
@@ -22,7 +53,7 @@ public class EmployeConsole
 
 	Option editerEmploye(Employe employe)
 	{
-			Menu menu = new Menu("Gérer le compte " + employe.getNom(), "c");
+			Menu menu = new Menu("Modifier l'employé", "c");
 			menu.add(afficher(employe));
 			menu.add(changerNom(employe));
 			menu.add(changerPrenom(employe));
@@ -30,6 +61,7 @@ public class EmployeConsole
 			menu.add(changerDateArrivee(employe));
 			menu.add(changerDateDepart(employe));
 			menu.add(changerPassword(employe));
+			//menu.add(supprimer(employe));
 			menu.addBack("q");
 			return menu;
 	}
@@ -56,7 +88,7 @@ public class EmployeConsole
 		return new Option("Changer la date d'arrivee", "d", () -> {try {
 			employe.setDateArrivee(getString("Nouvelle date d'arrivée : "));
 		} catch (ImpossibleDeChangerDate e) {
-			e.printStackTrace();
+			System.out.print(e);
 		}});
 	}
 	
@@ -65,7 +97,7 @@ public class EmployeConsole
 		return new Option("Changer la date de départ", "t", () -> {try {
 			employe.setDateDepart(getString("Nouvelle date de départ : "));
 		} catch (ImpossibleDeChangerDate e) {
-			e.printStackTrace();
+			System.out.print(e);
 		}});
 	}
 	
@@ -74,5 +106,8 @@ public class EmployeConsole
 		return new Option("Changer le password", "x", () -> {employe.setPassword(getString("Nouveau password : "));});
 	}
 	
-	
+	private Option supprimer(Employe employe)
+	{
+		return new Option("Supprimer l'employé", "s", () -> {employe.remove();});
+	}
 }
