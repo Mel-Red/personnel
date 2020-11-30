@@ -133,11 +133,18 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setDateArrivee(String dateArrivee) throws ImpossibleDeChangerDate
 	{
 		LocalDate temp = LocalDate.parse(dateArrivee);
-		boolean isAfter = temp.isAfter(dateDepart);
-		if (isAfter)
-			throw new ImpossibleDeChangerDate("La date d'arrivée est après la date de départ");
+		if(dateDepart == null)
+		{
+			this.dateDepart = temp;
+		}
 		else
-			this.dateArrivee = temp;
+		{
+			boolean isAfter = temp.isAfter(dateDepart);
+			 if (isAfter)
+				throw new ImpossibleDeChangerDate();
+			else
+				this.dateArrivee = temp;
+		}
 	}
 	
 	/**
@@ -158,11 +165,18 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setDateDepart(String dateDepart) throws ImpossibleDeChangerDate
 	{
 		LocalDate temp = LocalDate.parse(dateDepart);
-		boolean isBefore = temp.isBefore(dateArrivee);
-		if (isBefore)
-			throw new ImpossibleDeChangerDate("La date de départ est précédente de la date d'arrivée");
-		else
+		if(dateArrivee == null)
+		{
 			this.dateDepart = temp;
+		}
+		else 
+		{
+			boolean isBefore = temp.isBefore(dateArrivee);
+			if (isBefore)
+				throw new ImpossibleDeChangerDate();
+			else
+				this.dateDepart = temp;
+		}
 	}
 	
 

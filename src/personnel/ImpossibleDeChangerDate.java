@@ -1,7 +1,7 @@
 package personnel;
 
 public class ImpossibleDeChangerDate extends Exception {
-	public ImpossibleDeChangerDate (String s) {
-		super(s);
+	public ImpossibleDeChangerDate() {
+		System.out.println("La date de départ précède la date d'arrivée, veuillez recommencer");		
 	}
 }
