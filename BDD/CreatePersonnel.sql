@@ -6,17 +6,11 @@ CREATE TABLE employe
 (
 	idE int(6) NOT NULL,
 	nomE varchar(15) NOT NULL,
-	prenomE varchar(15) NOT NULL,
+	prenomE varchar(100) NOT NULL,
 	mailE varchar(50),
 	DateA Date NOT NULL, 
 	DateD Date,
-	MdpE varchar(50)
-)
-ENGINE=INNODB;
-
-CREATE TABLE employeN
-(
-	idEmployee int(6) NOT NULL,
+	MdpE varchar(50),
 	isAdmin boolean
 )
 ENGINE=INNODB;
@@ -30,7 +24,7 @@ ENGINE=INNODB;
 
 CREATE TABLE ligue
 (
-	idL int(6) NOT NULL	
+	idL int(6) NOT NULL,
 	nomL varchar(25) NOT NULL,
 	idAdmin int(6)
 )
