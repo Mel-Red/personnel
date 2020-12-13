@@ -135,7 +135,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		LocalDate temp = LocalDate.parse(dateArrivee);
 		if(dateDepart == null)
 		{
-			this.dateDepart = temp;
+			this.dateArrivee = temp;
 		}
 		else
 		{
