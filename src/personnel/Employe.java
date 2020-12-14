@@ -2,6 +2,9 @@ package personnel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
@@ -132,18 +135,24 @@ public class Employe implements Serializable, Comparable<Employe>
 
 	public void setDateArrivee(String dateArrivee) throws ImpossibleDeChangerDate
 	{
-		LocalDate temp = LocalDate.parse(dateArrivee);
-		if(dateDepart == null)
+		try
 		{
-			this.dateArrivee = temp;
-		}
-		else
-		{
-			boolean isAfter = temp.isAfter(dateDepart);
-			 if (isAfter)
-				throw new ImpossibleDeChangerDate();
-			else
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);
+			LocalDate temp = LocalDate.parse(dateArrivee, formatter);
+			if(dateDepart == null)
+			{
 				this.dateArrivee = temp;
+			}
+			else
+			{
+				boolean isAfter = temp.isAfter(dateDepart);
+				 if (isAfter)
+					throw new ImpossibleDeChangerDate();
+				else
+					this.dateArrivee = temp;
+			}
+		} catch (DateTimeParseException e) {
+			System.out.println("Invalid date");
 		}
 	}
 	
@@ -164,19 +173,25 @@ public class Employe implements Serializable, Comparable<Employe>
 
 	public void setDateDepart(String dateDepart) throws ImpossibleDeChangerDate
 	{
-		LocalDate temp = LocalDate.parse(dateDepart);
-		if(dateArrivee == null)
+		try
 		{
-			this.dateDepart = temp;
-		}
-		else 
-		{
-			boolean isBefore = temp.isBefore(dateArrivee);
-			if (isBefore)
-				throw new ImpossibleDeChangerDate();
-			else
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);
+			LocalDate temp = LocalDate.parse(dateDepart, formatter);
+			if(dateArrivee == null)
+			{
 				this.dateDepart = temp;
-		}
+			}
+			else 
+			{
+				boolean isBefore = temp.isBefore(dateArrivee);
+				if (isBefore)
+					throw new ImpossibleDeChangerDate();
+				else
+					this.dateDepart = temp;
+			}
+		} catch (DateTimeParseException e) {
+			System.out.println("Invalid date");
+		}	
 	}
 	
 
