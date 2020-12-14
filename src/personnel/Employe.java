@@ -137,6 +137,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	{
 		try
 		{
+			dateArrivee = dateArrivee.replaceAll("/", "-");
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);
 			LocalDate temp = LocalDate.parse(dateArrivee, formatter);
 			if(dateDepart == null)
@@ -175,6 +176,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	{
 		try
 		{
+			dateDepart = dateDepart.replaceAll("/", "-");
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);
 			LocalDate temp = LocalDate.parse(dateDepart, formatter);
 			if(dateArrivee == null)
