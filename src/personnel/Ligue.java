@@ -42,6 +42,11 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		administrateur = gestionPersonnel.getRoot();
 		this.id = id;
 	}
+	
+	public int getId()
+	{
+		return id;
+	}
 
 	/**
 	 * Retourne le nom de la ligue.
@@ -83,10 +88,13 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	
 	public void setAdministrateur(Employe administrateur)
 	{
-		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
-		if (administrateur != root && administrateur.getLigue() != this)
-			throw new DroitsInsuffisants();
-		this.administrateur = administrateur;
+		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
+		if (gestionPersonnel != null) {
+			Employe root = gestionPersonnel.getRoot();
+			if (administrateur != root && administrateur.getLigue() != this)
+				throw new DroitsInsuffisants();
+			this.administrateur = administrateur;
+		}
 	}
 
 	/**
@@ -109,9 +117,16 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @return l'employé créé. 
 	 */
 
-	public Employe addEmploye(String nom, String prenom, String mail, String password)
+	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) throws SauvegardeImpossible
 	{
-		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password);
+		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateArrivee, dateDepart);
+		employes.add(employe);
+		return employe;
+	}
+	
+	public Employe addEmploye(int id, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart)
+	{
+		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateArrivee, dateDepart, id);
 		employes.add(employe);
 		return employe;
 	}
@@ -132,7 +147,9 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	
 	public void remove()
 	{
-		GestionPersonnel.getGestionPersonnel().remove(this);
+		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
+		if (gestionPersonnel != null)
+			gestionPersonnel.remove(this);
 	}
 	
 

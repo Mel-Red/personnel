@@ -19,6 +19,6 @@ CREATE TABLE employe
 	dateArrivee Date,
 	dateDepart Date, 
 	ligue_id int,
-	is_admin tinyint default 2
+	role tinyint default 2
 )
 ENGINE=INNODB;

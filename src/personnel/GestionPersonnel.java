@@ -20,7 +20,7 @@ public class GestionPersonnel implements Serializable
 	private static final long serialVersionUID = -105283113987886425L;
 	private static GestionPersonnel gestionPersonnel = null;
 	private SortedSet<Ligue> ligues;
-	private Employe root = new Employe(this, null, "root", "", "", "toor");
+	private Employe root;
 	public final static int SERIALIZATION = 1, JDBC = 2, 
 			TYPE_PASSERELLE = JDBC;  
 	private static Passerelle passerelle = TYPE_PASSERELLE == JDBC ? new jdbc.JDBC() : new serialisation.Serialization();	
@@ -29,6 +29,7 @@ public class GestionPersonnel implements Serializable
 	 * Retourne l'unique instance de cette classe.
 	 * Crée cet objet s'il n'existe déjà.
 	 * @return l'unique objet de type {@link GestionPersonnel}.
+	 * @throws SauvegardeImpossible 
 	 */
 	
 	public static GestionPersonnel getGestionPersonnel()
@@ -37,16 +38,22 @@ public class GestionPersonnel implements Serializable
 		{
 			gestionPersonnel = passerelle.getGestionPersonnel();
 			if (gestionPersonnel == null)
-				gestionPersonnel = new GestionPersonnel();
+				try {
+					gestionPersonnel = new GestionPersonnel();
+				} catch (SauvegardeImpossible e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		return gestionPersonnel;
 	}
 
-	public GestionPersonnel()
+	public GestionPersonnel() throws SauvegardeImpossible
 	{
 		if (gestionPersonnel != null)
 			throw new RuntimeException("Vous ne pouvez créer qu'une seuls instance de cet objet.");
 		ligues = new TreeSet<>();
+		root = new Employe(this, null, "root", "", "", "toor", null, null);
 		gestionPersonnel = this;
 	}
 	
@@ -106,6 +113,11 @@ public class GestionPersonnel implements Serializable
 	int insert(Ligue ligue) throws SauvegardeImpossible
 	{
 		return passerelle.insert(ligue);
+	}
+	
+	int insertEmploye(Employe employe) throws SauvegardeImpossible
+	{
+		return passerelle.insertEmploye(employe);
 	}
 
 	/**

@@ -21,16 +21,33 @@ public class Employe implements Serializable, Comparable<Employe>
 	private LocalDate dateArrivee, dateDepart;
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
+	private int id;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) throws SauvegardeImpossible
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
 		this.mail = mail;
-		this.dateArrivee = LocalDate.now();
+		this.dateArrivee = dateArrivee;
+		this.dateDepart = dateDepart;
 		this.ligue = ligue;
+		if (dateDepart != null && dateArrivee != null)
+			this.id = gestionPersonnel.insertEmploye(this);
+	}
+	
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart, int id)
+	{
+		this.gestionPersonnel = gestionPersonnel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.password = password;
+		this.mail = mail;
+		this.dateArrivee = dateArrivee;
+		this.dateDepart = dateDepart;
+		this.ligue = ligue;
+		this.id = id;
 	}
 	
 	
@@ -55,7 +72,11 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public boolean estRoot()
 	{
-		return GestionPersonnel.getGestionPersonnel().getRoot() == this;
+		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
+		if (gestionPersonnel != null) {
+			return gestionPersonnel.getRoot() == this;
+		}
+		return false;
 	}
 	
 	/**
@@ -219,6 +240,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	{
 		this.password= password;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
 
 	/**
 	 * Retourne la ligue à laquelle l'employé est affecté.
@@ -237,15 +262,18 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public void remove()
 	{
-		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
-		if (this != root)
-		{
-			if (estAdmin(getLigue()))
-				getLigue().setAdministrateur(root);
-			ligue.remove(this);
+		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
+		if (gestionPersonnel != null) {
+			Employe root = gestionPersonnel.getRoot();
+			if (this != root)
+			{
+				if (estAdmin(getLigue()))
+					getLigue().setAdministrateur(root);
+				ligue.remove(this);
+			}
+			else
+				throw new ImpossibleDeSupprimerRoot();
 		}
-		else
-			throw new ImpossibleDeSupprimerRoot();
 	}
 
 	@Override

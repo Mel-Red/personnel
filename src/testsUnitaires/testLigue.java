@@ -46,7 +46,7 @@ class testLigue
 	void addEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty"); 
+		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty", null,null); 
 		assertEquals(employe, ligue.getEmployes().first());
 	}
 	
@@ -54,7 +54,7 @@ class testLigue
 	void removeEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
-		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
+		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		ligue.remove(employe);
 		assertEquals(ligue.hasEmploye(employe), false);
 	}
@@ -63,7 +63,7 @@ class testLigue
 	void setEmployeName() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
-		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
+		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		employe.setNom("New Name");
 		assertEquals(employe.getNom(), "New Name");
 	}
@@ -72,7 +72,7 @@ class testLigue
 	void setEmployeFName() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
-		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
+		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		employe.setPrenom("New LName");
 		assertEquals(employe.getPrenom(), "New LName");
 	}
@@ -81,7 +81,7 @@ class testLigue
 	void setEmployeMail() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
-		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
+		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		employe.setMail("newmail@gmail.com");
 		assertEquals(employe.getMail(), "newmail@gmail.com");
 	}
@@ -90,7 +90,7 @@ class testLigue
 	void setDateArrivee() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
-		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
+		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		try {
 			employe.setDateArrivee("2020-10-20");
 		} catch (ImpossibleDeChangerDate e) {
@@ -103,7 +103,7 @@ class testLigue
 	void setDateDepart() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
-		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
+		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		try {
 			employe.setDateDepart("2021-10-20");
 		} catch (ImpossibleDeChangerDate e) {
@@ -116,7 +116,7 @@ class testLigue
 	void setEmployePassword() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
-		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
+		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		employe.setPassword("NewPassword");
 		assertEquals(employe.checkPassword("NewPassword"), true);
 	}
@@ -125,7 +125,7 @@ class testLigue
 	void setAdministrateur() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
-		Employe administrateur = ligue.addEmploye("Admin", "Admin", "admin@gmail.com", "hello");
+		Employe administrateur = ligue.addEmploye("Admin", "Admin", "admin@gmail.com", "hello", null, null);
 		ligue.setAdministrateur(administrateur);
 		assertEquals(ligue.getAdministrateur(), administrateur);
 	}
@@ -134,12 +134,12 @@ class testLigue
 	void testEstAdmin() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
-		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello");
+		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		assertEquals(employe.estAdmin(ligue), false);
 		ligue.setAdministrateur(employe);
 		assertEquals(employe.estAdmin(ligue), true);
 		Ligue ligue2 = gestionPersonnel.addLigue("L2");
-		Employe employe2 = ligue2.addEmploye("DoDo", "HoHo", "DoDo.hoho@gmail.com", "hello");
+		Employe employe2 = ligue2.addEmploye("DoDo", "HoHo", "DoDo.hoho@gmail.com", "hello", null, null);
 		assertEquals(employe2.estAdmin(ligue), false);
 	}
 }
