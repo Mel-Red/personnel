@@ -87,4 +87,23 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
+	
+	/*@Override
+	public Ligue getLigue() 
+	{
+		GestionPersonnel gestionPersonnel = new GestionPersonnel();
+		try 
+		{
+			String requete = "select * from ligue";
+			Statement instruction = connection.createStatement();
+			ResultSet ligues = instruction.executeQuery(requete);
+			while (ligues.next())
+				gestionPersonnel.addLigue(ligues.getInt(1), ligues.getString(2));
+		}
+		catch (SQLException e)
+		{
+			System.out.println(e);
+		}
+		return gestionPersonnel;
+	}*/
 }
