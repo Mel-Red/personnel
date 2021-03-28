@@ -92,11 +92,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Change le nom de l'employé.
 	 * @param nom le nouveau nom.
+	 * @throws SauvegardeImpossible 
 	 */
 	
-	public void setNom(String nom)
+	public void setNom(String nom) throws SauvegardeImpossible
 	{
 		this.nom = nom;
+		this.id = gestionPersonnel.updateEmploye(this);
 	}
 
 	/**
@@ -294,5 +296,10 @@ public class Employe implements Serializable, Comparable<Employe>
 		else
 			res += ligue.toString();
 		return res + ")";
+	}
+
+	public int getId() {
+		// TODO Auto-generated method stub
+		return id;
 	}
 }

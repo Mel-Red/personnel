@@ -11,6 +11,7 @@ import commandLineMenus.Option;
 import personnel.Employe;
 import personnel.ImpossibleDeChangerDate;
 import personnel.Ligue;
+import personnel.SauvegardeImpossible;
 
 public class EmployeConsole 
 {
@@ -69,7 +70,12 @@ public class EmployeConsole
 	private Option changerNom(final Employe employe)
 	{
 		return new Option("Changer le nom", "n", 
-				() -> {employe.setNom(getString("Nouveau nom : "));}
+				() -> {try {
+					employe.setNom(getString("Nouveau nom : "));
+				} catch (SauvegardeImpossible e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}}
 			);
 	}
 	
