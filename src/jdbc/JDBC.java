@@ -166,4 +166,39 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}
 	}
+	
+	@Override
+	public int deleteEmploye(Employe employe) throws SauvegardeImpossible
+	{
+		try
+		{
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("delete from employe where id = ?");
+			instruction.setInt(1, employe.getId());
+			instruction.executeUpdate();
+			return -1;
+		}
+		catch (SQLException exception)
+		{
+			exception.printStackTrace();
+			throw new SauvegardeImpossible(exception);
+		}
+	}
+	
+	@Override
+	public int changeAdmin(Employe employe) throws SauvegardeImpossible
+	{
+		try
+		{
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("update employe set role = 1 where id = ?");
+			instruction.setInt(1, employe.getId());
+			return -1;
+		}
+		catch (SQLException exception)
+		{
+			exception.printStackTrace();
+			throw new SauvegardeImpossible(exception);
+		}
+	}
 }

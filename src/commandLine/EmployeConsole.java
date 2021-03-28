@@ -135,6 +135,11 @@ public class EmployeConsole
 	
 	private Option supprimer(Employe employe)
 	{
-		return new Option("Supprimer l'employé", "s", () -> {employe.remove();});
+		return new Option("Supprimer l'employé", "s", () -> {try {
+			employe.remove();
+		} catch (SauvegardeImpossible e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}});
 	}
 }

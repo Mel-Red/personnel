@@ -272,9 +272,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Supprime l'employé. Si celui-ci est un administrateur, le root
 	 * récupère les droits d'administration sur sa ligue.
+	 * @throws SauvegardeImpossible 
 	 */
 	
-	public void remove()
+	public void remove() throws SauvegardeImpossible
 	{
 		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 		if (gestionPersonnel != null) {
@@ -284,6 +285,8 @@ public class Employe implements Serializable, Comparable<Employe>
 				if (estAdmin(getLigue()))
 					getLigue().setAdministrateur(root);
 				ligue.remove(this);
+				this.id = gestionPersonnel.deleteEmploye(this);
+				
 			}
 			else
 				throw new ImpossibleDeSupprimerRoot();

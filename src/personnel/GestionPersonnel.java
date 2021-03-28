@@ -130,6 +130,11 @@ public class GestionPersonnel implements Serializable
 		return passerelle.updateEmploye(employe);
 	}
 	
+	int deleteEmploye(Employe employe) throws SauvegardeImpossible
+	{
+		return passerelle.deleteEmploye(employe);
+	}
+	
 
 	/**
 	 * Retourne le root (super-utilisateur).
