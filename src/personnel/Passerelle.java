@@ -10,4 +10,5 @@ public interface Passerelle
 	public int updateEmploye(Employe employe) throws SauvegardeImpossible;
 	public int changeAdmin(Employe employe) throws SauvegardeImpossible;
 	public int deleteEmploye(Employe employe) throws SauvegardeImpossible;
+	public int delete(Ligue ligue) throws SauvegardeImpossible;
 }
