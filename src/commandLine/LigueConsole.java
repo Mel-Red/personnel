@@ -137,7 +137,12 @@ public class LigueConsole
 	{
 		return new List<>("Changer administrateur de la ligue", "c", 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {ligue.setAdministrateur(element);}
+				(index, element) -> {try {
+					ligue.setAdministrateur(element);
+				} catch (SauvegardeImpossible e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}}
 				);
 	}		
 	

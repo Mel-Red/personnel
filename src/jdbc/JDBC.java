@@ -46,7 +46,7 @@ public class JDBC implements Passerelle
 				Statement instruction2 = connection.createStatement();
 				ResultSet employes = instruction2.executeQuery(requete2);
 				while (employes.next())
-					ligue.addEmploye(employes.getInt(1), employes.getString(2), employes.getString(3), employes.getString(4), employes.getString(5), LocalDate.parse(employes.getDate(6).toString()), LocalDate.parse(employes.getDate(7).toString()));
+					ligue.addEmploye(employes.getInt(1), employes.getString(2), employes.getString(3), employes.getString(5), employes.getString(4), LocalDate.parse(employes.getDate(6).toString()), LocalDate.parse(employes.getDate(7).toString()));
 			}
 		} catch (SauvegardeImpossible e1) {
 			// TODO Auto-generated catch block
@@ -208,9 +208,19 @@ public class JDBC implements Passerelle
 	{
 		try
 		{
-			PreparedStatement instruction;
-			instruction = connection.prepareStatement("update employe set role = 1 where id = ?");
-			instruction.setInt(1, employe.getId());
+			String requete = "select id from employe where role = 1 and ligue_id = " + employe.getLigue().getId();
+			Statement instruction = connection.createStatement();
+			ResultSet admins = instruction.executeQuery(requete);
+			while (admins.next()) {
+				PreparedStatement admin;
+				admin = connection.prepareStatement("update employe set role = 2 where id = ?");
+				admin.setInt(1, admins.getInt(1));
+				admin.executeUpdate();
+			}
+			PreparedStatement admin;
+			admin = connection.prepareStatement("update employe set role = 1 where id = ?");
+			admin.setInt(1, employe.getId());
+			admin.executeUpdate();
 			return -1;
 		}
 		catch (SQLException exception)
