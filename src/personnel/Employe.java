@@ -114,11 +114,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Change le prénom de l'employé.
 	 * @param prenom le nouveau prénom de l'employé. 
+	 * @throws SauvegardeImpossible 
 	 */
 
-	public void setPrenom(String prenom)
+	public void setPrenom(String prenom) throws SauvegardeImpossible
 	{
 		this.prenom = prenom;
+		this.id = gestionPersonnel.updateEmploye(this);
 	}
 
 	/**
@@ -134,11 +136,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Change le mail de l'employé.
 	 * @param mail le nouveau mail de l'employé.
+	 * @throws SauvegardeImpossible 
 	 */
 
-	public void setMail(String mail)
+	public void setMail(String mail) throws SauvegardeImpossible
 	{
 		this.mail = mail;
+		this.id = gestionPersonnel.updateEmploye(this);
 	}
 	
 	/**
@@ -154,9 +158,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Change la date d'arrivée de l'employé.
 	 * @return la date d'arrivée de l'employé.
+	 * @throws SauvegardeImpossible 
 	 */
 
-	public void setDateArrivee(String dateArrivee) throws ImpossibleDeChangerDate
+	public void setDateArrivee(String dateArrivee) throws ImpossibleDeChangerDate, SauvegardeImpossible
 	{
 		try
 		{
@@ -166,6 +171,7 @@ public class Employe implements Serializable, Comparable<Employe>
 			if(dateDepart == null)
 			{
 				this.dateArrivee = temp;
+				this.id = gestionPersonnel.updateEmploye(this);
 			}
 			else
 			{
@@ -174,6 +180,7 @@ public class Employe implements Serializable, Comparable<Employe>
 					throw new ImpossibleDeChangerDate();
 				else
 					this.dateArrivee = temp;
+				 	this.id = gestionPersonnel.updateEmploye(this);
 			}
 		} catch (DateTimeParseException e) {
 			System.out.println("Invalid date");
@@ -193,9 +200,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Change la date de départ de l'employé.
 	 * @return la date de départ de l'employé.
+	 * @throws SauvegardeImpossible 
 	 */
 
-	public void setDateDepart(String dateDepart) throws ImpossibleDeChangerDate
+	public void setDateDepart(String dateDepart) throws ImpossibleDeChangerDate, SauvegardeImpossible
 	{
 		try
 		{
@@ -205,6 +213,7 @@ public class Employe implements Serializable, Comparable<Employe>
 			if(dateArrivee == null)
 			{
 				this.dateDepart = temp;
+				this.id = gestionPersonnel.updateEmploye(this);
 			}
 			else 
 			{
@@ -213,6 +222,7 @@ public class Employe implements Serializable, Comparable<Employe>
 					throw new ImpossibleDeChangerDate();
 				else
 					this.dateDepart = temp;
+					this.id = gestionPersonnel.updateEmploye(this);
 			}
 		} catch (DateTimeParseException e) {
 			System.out.println("Invalid date");
@@ -236,11 +246,13 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Change le password de l'employé.
 	 * @param password le nouveau password de l'employé. 
+	 * @throws SauvegardeImpossible 
 	 */
 	
-	public void setPassword(String password)
+	public void setPassword(String password) throws SauvegardeImpossible
 	{
 		this.password= password;
+		this.id = gestionPersonnel.updateEmploye(this);
 	}
 	
 	public String getPassword() {
