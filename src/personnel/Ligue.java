@@ -2,6 +2,9 @@ package personnel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -119,12 +122,23 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @param mail l'adresse mail de l'employé.
 	 * @param password le password de l'employé.
 	 * @return l'employé créé. 
+	 * @throws ImpossibleDeChangerDate 
 	 */
 
-	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) throws SauvegardeImpossible
+	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateArrivee, dateDepart);
+		try
+		{
+		boolean isAfter = dateArrivee.isAfter(dateDepart);
+		 if (isAfter)
+			throw new ImpossibleDeChangerDate();
+		else
 		employes.add(employe);
+		}
+		catch (DateTimeParseException e) {
+			System.out.println("Invalid date");
+		}	
 		return employe;
 	}
 	

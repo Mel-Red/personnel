@@ -43,7 +43,7 @@ class testLigue
 	}
 
 	@Test
-	void addEmploye() throws SauvegardeImpossible
+	void addEmploye() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Fléchettes");
 		Employe employe = ligue.addEmploye("Bouchard", "Gérard", "g.bouchard@gmail.com", "azerty", null,null); 
@@ -51,7 +51,7 @@ class testLigue
 	}
 	
 	@Test
-	void removeEmploye() throws SauvegardeImpossible
+	void removeEmploye() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
@@ -60,7 +60,7 @@ class testLigue
 	}
 	
 	@Test
-	void setEmployeName() throws SauvegardeImpossible
+	void setEmployeName() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
@@ -69,7 +69,7 @@ class testLigue
 	}
 	
 	@Test
-	void setEmployeFName() throws SauvegardeImpossible
+	void setEmployeFName() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
@@ -78,7 +78,7 @@ class testLigue
 	}
 	
 	@Test
-	void setEmployeMail() throws SauvegardeImpossible
+	void setEmployeMail() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
@@ -87,7 +87,7 @@ class testLigue
 	}
 	
 	@Test
-	void setDateArrivee() throws SauvegardeImpossible
+	void setDateArrivee() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
@@ -100,7 +100,7 @@ class testLigue
 	}
 	
 	@Test
-	void setDateDepart() throws SauvegardeImpossible
+	void setDateDepart() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
@@ -113,7 +113,7 @@ class testLigue
 	}
 	
 	@Test
-	void setEmployePassword() throws SauvegardeImpossible
+	void setEmployePassword() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
@@ -122,7 +122,7 @@ class testLigue
 	}
 	
 	@Test
-	void setAdministrateur() throws SauvegardeImpossible
+	void setAdministrateur() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe administrateur = ligue.addEmploye("Admin", "Admin", "admin@gmail.com", "hello", null, null);
@@ -131,7 +131,7 @@ class testLigue
 	}
 	
 	@Test
-	void testEstAdmin() throws SauvegardeImpossible
+	void testEstAdmin() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
