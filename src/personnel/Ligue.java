@@ -90,9 +90,10 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * administrateur.
 	 * @param administrateur le nouvel administrateur de la ligue.
 	 * @throws SauvegardeImpossible 
+	 * @throws ImpossibleDeChangerDate 
 	 */
 	
-	public void setAdministrateur(Employe administrateur) throws SauvegardeImpossible
+	public void setAdministrateur(Employe administrateur) throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 		if (gestionPersonnel != null) {
@@ -134,7 +135,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		if (isAfter)
 			throw new ImpossibleDeChangerDate();
 		else
-		employes.add(employe);
+			employes.add(employe);
 		}
 		catch (DateTimeParseException e) {
 			System.out.println("Invalid date");
@@ -162,9 +163,10 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * Supprime la ligue, entraîne la suppression de tous les employés
 	 * de la ligue.
 	 * @throws SauvegardeImpossible 
+	 * @throws ImpossibleDeChangerDate 
 	 */
 	
-	public void remove() throws SauvegardeImpossible
+	public void remove() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 		if (gestionPersonnel != null)

@@ -145,6 +145,9 @@ public class LigueConsole
 				} catch (SauvegardeImpossible e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (ImpossibleDeChangerDate e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}}
 				);
 	}		
@@ -154,6 +157,9 @@ public class LigueConsole
 		return new Option("Supprimer", "d", () -> {try {
 			ligue.remove();
 		} catch (SauvegardeImpossible e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ImpossibleDeChangerDate e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}});

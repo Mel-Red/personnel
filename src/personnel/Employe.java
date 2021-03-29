@@ -23,7 +23,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	private GestionPersonnel gestionPersonnel;
 	private int id;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) throws SauvegardeImpossible
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart) throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
@@ -34,7 +34,17 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.dateDepart = dateDepart;
 		this.ligue = ligue;
 		if (dateDepart != null && dateArrivee != null)
+			try
+		{
+		boolean isAfter = dateArrivee.isAfter(dateDepart);
+		if (isAfter)
+			throw new ImpossibleDeChangerDate();
+		else
 			this.id = gestionPersonnel.insertEmploye(this);
+		}
+		catch (DateTimeParseException e) {
+			System.out.println("Invalid date");
+		}
 	}
 	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateArrivee, LocalDate dateDepart, int id)
@@ -68,9 +78,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	/**
 	 * Retourne vrai ssi l'employé est le root.
 	 * @return vrai ssi l'employé est le root.
+	 * @throws ImpossibleDeChangerDate 
 	 */
 	
-	public boolean estRoot()
+	public boolean estRoot() throws ImpossibleDeChangerDate
 	{
 		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 		if (gestionPersonnel != null) {
@@ -273,9 +284,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Supprime l'employé. Si celui-ci est un administrateur, le root
 	 * récupère les droits d'administration sur sa ligue.
 	 * @throws SauvegardeImpossible 
+	 * @throws ImpossibleDeChangerDate 
 	 */
 	
-	public void remove() throws SauvegardeImpossible
+	public void remove() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
 		if (gestionPersonnel != null) {
@@ -306,10 +318,15 @@ public class Employe implements Serializable, Comparable<Employe>
 	public String toString()
 	{
 		String res = nom + " " + prenom + " " + mail + " " + dateArrivee + " " + dateDepart + " (";
-		if (estRoot())
-			res += "super-utilisateur";
-		else
-			res += ligue.toString();
+		try {
+			if (estRoot())
+				res += "super-utilisateur";
+			else
+				res += ligue.toString();
+		} catch (ImpossibleDeChangerDate e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return res + ")";
 	}
 

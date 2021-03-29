@@ -32,7 +32,7 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public GestionPersonnel getGestionPersonnel() 
+	public GestionPersonnel getGestionPersonnel() throws ImpossibleDeChangerDate 
 	{
 		GestionPersonnel gestionPersonnel = null;
 		try {
