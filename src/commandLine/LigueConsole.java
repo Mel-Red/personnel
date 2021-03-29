@@ -112,7 +112,7 @@ public class LigueConsole
 						e.printStackTrace();
 					} catch (ImpossibleDeChangerDate e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						System.out.print(e);
 					}
 				}
 		);

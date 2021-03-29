@@ -131,7 +131,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		try
 		{
 		boolean isAfter = dateArrivee.isAfter(dateDepart);
-		 if (isAfter)
+		if (isAfter)
 			throw new ImpossibleDeChangerDate();
 		else
 		employes.add(employe);
