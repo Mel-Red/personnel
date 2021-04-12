@@ -76,6 +76,7 @@ public class LigueConsole
 		menu.add(changerNom(ligue));
 		menu.add(supprimer(ligue));
 		menu.addBack("q");
+		menu.setAutoBack(true);
 		return menu;
 	}
 
