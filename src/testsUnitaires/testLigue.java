@@ -2,6 +2,8 @@ package testsUnitaires;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
+
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
@@ -92,7 +94,7 @@ class testLigue
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		try {
-			employe.setDateArrivee("2020-10-20");
+			employe.setDateArrivee(LocalDate.parse("2020-10-20"));
 		} catch (ImpossibleDeChangerDate e) {
 			e.printStackTrace();
 		}
@@ -105,7 +107,7 @@ class testLigue
 		Ligue ligue = gestionPersonnel.addLigue("L1");
 		Employe employe = ligue.addEmploye("ToTo", "HoHo", "toto.hoho@gmail.com", "hello", null, null);
 		try {
-			employe.setDateDepart("2021-10-20");
+			employe.setDateDepart(LocalDate.parse("2021-10-20"));
 		} catch (ImpossibleDeChangerDate e) {
 			e.printStackTrace();
 		}

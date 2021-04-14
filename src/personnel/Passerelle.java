@@ -6,9 +6,9 @@ public interface Passerelle
 	public void sauvegarderGestionPersonnel(GestionPersonnel gestionPersonnel)  throws SauvegardeImpossible;
 	public int insert(Ligue ligue) throws SauvegardeImpossible;
 	public int insertEmploye(Employe employe) throws SauvegardeImpossible;
-	public int update(Ligue ligue) throws SauvegardeImpossible;
-	public int updateEmploye(Employe employe) throws SauvegardeImpossible;
-	public int changeAdmin(Employe employe) throws SauvegardeImpossible;
-	public int deleteEmploye(Employe employe) throws SauvegardeImpossible;
-	public int delete(Ligue ligue) throws SauvegardeImpossible;
+	public void update(Ligue ligue) throws SauvegardeImpossible;
+	public void updateEmploye(Employe employe) throws SauvegardeImpossible;
+	public void changeAdmin(Employe employe) throws SauvegardeImpossible;
+	public void deleteEmploye(Employe employe) throws SauvegardeImpossible;
+	public void delete(Ligue ligue) throws SauvegardeImpossible;
 }

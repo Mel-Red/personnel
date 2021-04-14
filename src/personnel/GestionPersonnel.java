@@ -124,14 +124,14 @@ public class GestionPersonnel implements Serializable
 		return passerelle.insert(ligue);
 	}
 	
-	int update(Ligue ligue) throws SauvegardeImpossible
+	void update(Ligue ligue) throws SauvegardeImpossible
 	{
-		return passerelle.update(ligue);
+		passerelle.update(ligue);
 	}
 	
-	int delete(Ligue ligue) throws SauvegardeImpossible
+	void delete(Ligue ligue) throws SauvegardeImpossible
 	{
-		return passerelle.delete(ligue);
+		passerelle.delete(ligue);
 	}
 	
 	int insertEmploye(Employe employe) throws SauvegardeImpossible
@@ -139,19 +139,19 @@ public class GestionPersonnel implements Serializable
 		return passerelle.insertEmploye(employe);
 	}
 	
-	int updateEmploye(Employe employe) throws SauvegardeImpossible
+	void updateEmploye(Employe employe) throws SauvegardeImpossible
 	{
-		return passerelle.updateEmploye(employe);
+		passerelle.updateEmploye(employe);
 	}
 	
-	int deleteEmploye(Employe employe) throws SauvegardeImpossible
+	void deleteEmploye(Employe employe) throws SauvegardeImpossible
 	{
-		return passerelle.deleteEmploye(employe);
+		passerelle.deleteEmploye(employe);
 	}
 	
-	int changeAdmin(Employe employe) throws SauvegardeImpossible
+	void changeAdmin(Employe employe) throws SauvegardeImpossible
 	{
-		return passerelle.changeAdmin(employe);
+		passerelle.changeAdmin(employe);
 	}
 	
 

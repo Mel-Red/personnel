@@ -45,9 +45,12 @@ public class JDBC implements Passerelle
 				String requete2 = "select * from employe where ligue_id=" + ligue.getId();
 				Statement instruction2 = connection.createStatement();
 				ResultSet employes = instruction2.executeQuery(requete2);
-				while (employes.next())
+				while (employes.next()) {
 					ligue.addEmploye(employes.getInt(1), employes.getString(2), employes.getString(3), employes.getString(5), employes.getString(4), LocalDate.parse(employes.getDate(6).toString()), LocalDate.parse(employes.getDate(7).toString()));
-			}
+					if (employes.getInt("role") == 1)
+						ligue.setAdministrateur(ligue.addEmploye(employes.getInt(1), employes.getString(2), employes.getString(3), employes.getString(5), employes.getString(4), LocalDate.parse(employes.getDate(6).toString()), LocalDate.parse(employes.getDate(7).toString())));
+				}
+			}	
 		} catch (SauvegardeImpossible e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -99,7 +102,7 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public int update(Ligue ligue) throws SauvegardeImpossible
+	public void update(Ligue ligue) throws SauvegardeImpossible
 	{
 		try
 		{
@@ -108,7 +111,6 @@ public class JDBC implements Passerelle
 			instruction.setString(1, ligue.getNom());
 			instruction.setInt(2, ligue.getId());
 			instruction.executeUpdate();
-			return -1;
 		}
 		catch (SQLException exception)
 		{
@@ -118,7 +120,7 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public int delete(Ligue ligue) throws SauvegardeImpossible
+	public void delete(Ligue ligue) throws SauvegardeImpossible
 	{
 		try
 		{
@@ -126,7 +128,6 @@ public class JDBC implements Passerelle
 			instruction = connection.prepareStatement("delete from ligue where id = ?");
 			instruction.setInt(1, ligue.getId());
 			instruction.executeUpdate();
-			return -1;
 		}
 		catch (SQLException exception)
 		{
@@ -162,7 +163,7 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public int updateEmploye(Employe employe) throws SauvegardeImpossible
+	public void updateEmploye(Employe employe) throws SauvegardeImpossible
 	{
 		try
 		{
@@ -176,7 +177,6 @@ public class JDBC implements Passerelle
 			instruction.setString(6, employe.getDateDepart().toString());
 			instruction.setInt(7, employe.getId());
 			instruction.executeUpdate();
-			return -1;
 		}
 		catch (SQLException exception)
 		{
@@ -186,7 +186,7 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public int deleteEmploye(Employe employe) throws SauvegardeImpossible
+	public void deleteEmploye(Employe employe) throws SauvegardeImpossible
 	{
 		try
 		{
@@ -194,7 +194,6 @@ public class JDBC implements Passerelle
 			instruction = connection.prepareStatement("delete from employe where id = ?");
 			instruction.setInt(1, employe.getId());
 			instruction.executeUpdate();
-			return -1;
 		}
 		catch (SQLException exception)
 		{
@@ -204,7 +203,7 @@ public class JDBC implements Passerelle
 	}
 	
 	@Override
-	public int changeAdmin(Employe employe) throws SauvegardeImpossible
+	public void changeAdmin(Employe employe) throws SauvegardeImpossible
 	{
 		try
 		{
@@ -221,7 +220,6 @@ public class JDBC implements Passerelle
 			admin = connection.prepareStatement("update employe set role = 1 where id = ?");
 			admin.setInt(1, employe.getId());
 			admin.executeUpdate();
-			return -1;
 		}
 		catch (SQLException exception)
 		{

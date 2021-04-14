@@ -70,7 +70,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	public void setNom(String nom) throws SauvegardeImpossible
 	{
 		this.nom = nom;
-		this.id = gestionPersonnel.update(this);
+		gestionPersonnel.update(this);
 	}
 
 	/**
@@ -169,9 +169,10 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	public void remove() throws SauvegardeImpossible, ImpossibleDeChangerDate
 	{
 		GestionPersonnel gestionPersonnel = GestionPersonnel.getGestionPersonnel();
-		if (gestionPersonnel != null)
+		if (gestionPersonnel != null) {
 			gestionPersonnel.remove(this);
-			this.id = gestionPersonnel.delete(this);;
+			gestionPersonnel.delete(this);
+		}
 	}
 	
 

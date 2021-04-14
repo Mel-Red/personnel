@@ -2,6 +2,7 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import commandLineMenus.List;
@@ -102,7 +103,7 @@ public class EmployeConsole
 	private Option changerDateArrivee(final Employe employe)
 	{
 		return new Option("Changer la date d'arrivee", "d", () -> {try {
-			employe.setDateArrivee(getString("Nouvelle date d'arrivée : "));
+			employe.setDateArrivee(LocalDate.parse(getString("Nouvelle date d'arrivée : ")));
 		} catch (ImpossibleDeChangerDate e) {
 			System.out.print(e);
 		} catch (SauvegardeImpossible e) {
@@ -114,7 +115,7 @@ public class EmployeConsole
 	private Option changerDateDepart(final Employe employe)
 	{
 		return new Option("Changer la date de départ", "t", () -> {try {
-			employe.setDateDepart(getString("Nouvelle date de départ : "));
+			employe.setDateDepart(LocalDate.parse(getString("Nouvelle date de départ : ")));
 		} catch (ImpossibleDeChangerDate e) {
 			System.out.print(e);
 		} catch (SauvegardeImpossible e) {

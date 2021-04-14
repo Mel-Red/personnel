@@ -109,7 +109,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setNom(String nom) throws SauvegardeImpossible
 	{
 		this.nom = nom;
-		this.id = gestionPersonnel.updateEmploye(this);
+		gestionPersonnel.updateEmploye(this);
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setPrenom(String prenom) throws SauvegardeImpossible
 	{
 		this.prenom = prenom;
-		this.id = gestionPersonnel.updateEmploye(this);
+		gestionPersonnel.updateEmploye(this);
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setMail(String mail) throws SauvegardeImpossible
 	{
 		this.mail = mail;
-		this.id = gestionPersonnel.updateEmploye(this);
+		gestionPersonnel.updateEmploye(this);
 	}
 	
 	/**
@@ -172,26 +172,23 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @throws SauvegardeImpossible 
 	 */
 
-	public void setDateArrivee(String dateArrivee) throws ImpossibleDeChangerDate, SauvegardeImpossible
+	public void setDateArrivee(LocalDate dateArrivee) throws ImpossibleDeChangerDate, SauvegardeImpossible
 	{
 		try
 		{
-			dateArrivee = dateArrivee.replaceAll("/", "-");
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);
-			LocalDate temp = LocalDate.parse(dateArrivee, formatter);
 			if(dateDepart == null)
 			{
-				this.dateArrivee = temp;
-				this.id = gestionPersonnel.updateEmploye(this);
+				this.dateArrivee = dateArrivee;
+				gestionPersonnel.updateEmploye(this);
 			}
 			else
 			{
-				boolean isAfter = temp.isAfter(dateDepart);
+				boolean isAfter = dateArrivee.isAfter(dateDepart);
 				 if (isAfter)
 					throw new ImpossibleDeChangerDate();
 				else
-					this.dateArrivee = temp;
-				 	this.id = gestionPersonnel.updateEmploye(this);
+					this.dateArrivee = dateArrivee;
+				 	gestionPersonnel.updateEmploye(this);
 			}
 		} catch (DateTimeParseException e) {
 			System.out.println("Invalid date");
@@ -213,27 +210,24 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * @return la date de départ de l'employé.
 	 * @throws SauvegardeImpossible 
 	 */
-
-	public void setDateDepart(String dateDepart) throws ImpossibleDeChangerDate, SauvegardeImpossible
+	/* TODO local date en parametre + progager des exceptions */
+	public void setDateDepart(LocalDate dateDepart) throws ImpossibleDeChangerDate, SauvegardeImpossible
 	{
 		try
 		{
-			dateDepart = dateDepart.replaceAll("/", "-");
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);
-			LocalDate temp = LocalDate.parse(dateDepart, formatter);
 			if(dateArrivee == null)
 			{
-				this.dateDepart = temp;
-				this.id = gestionPersonnel.updateEmploye(this);
+				this.dateDepart = dateDepart;
+				gestionPersonnel.updateEmploye(this);
 			}
 			else 
 			{
-				boolean isBefore = temp.isBefore(dateArrivee);
+				boolean isBefore = dateDepart.isBefore(dateArrivee);
 				if (isBefore)
 					throw new ImpossibleDeChangerDate();
 				else
-					this.dateDepart = temp;
-					this.id = gestionPersonnel.updateEmploye(this);
+					this.dateDepart = dateDepart;
+					gestionPersonnel.updateEmploye(this);
 			}
 		} catch (DateTimeParseException e) {
 			System.out.println("Invalid date");
@@ -263,7 +257,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setPassword(String password) throws SauvegardeImpossible
 	{
 		this.password= password;
-		this.id = gestionPersonnel.updateEmploye(this);
+		gestionPersonnel.updateEmploye(this);
 	}
 	
 	public String getPassword() {
@@ -297,7 +291,7 @@ public class Employe implements Serializable, Comparable<Employe>
 				if (estAdmin(getLigue()))
 					getLigue().setAdministrateur(root);
 				ligue.remove(this);
-				this.id = gestionPersonnel.deleteEmploye(this);
+				gestionPersonnel.deleteEmploye(this);
 				
 			}
 			else
