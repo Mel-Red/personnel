@@ -42,7 +42,7 @@ public class Main extends Application {
 			root = FXMLLoader.load(getClass().getResource("application.fxml"));
 			Scene scene = new Scene(root, 300, 275);
 			
-			primaryStage.setTitle("FXML Welcome");
+			primaryStage.setTitle("Connexion");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException e) {
