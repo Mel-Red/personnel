@@ -98,7 +98,28 @@ public class AdminController implements Initializable {
     
     @FXML
     protected void ajouterEmployeAction(ActionEvent event) throws IOException {
-    	
+    	final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("Ceci n'est pas implémenté!"));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+    
+    @FXML
+    private void editTabLigue(Ligue ligue) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditLigue.fxml"));
+        Parent parent = fxmlLoader.load();
+        EditLigueController dialogController = fxmlLoader.<EditLigueController>getController();
+        dialogController.setAppMainObservableList(ligue, changesTabLigue);
+
+        Scene scene = new Scene(parent, 300, 200);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Modifier une ligue");
+        stage.setScene(scene);
+        stage.showAndWait();
     }
     
     public void initializeTabLigue() throws IOException {
@@ -119,10 +140,9 @@ public class AdminController implements Initializable {
 			@Override
 			public TableCell<Ligue, Void> call(TableColumn<Ligue, Void> arg0) {
 				final TableCell<Ligue, Void> cell = new TableCell<Ligue, Void>() {
-                    final Button btn1 = new Button("Voir Ligue");
                     final Button btn2 = new Button("Modifier Ligue");
                     final Button btn3 = new Button("Supprimer Ligue");
-                    final HBox hbox = new HBox(20, btn1, btn2, btn3);
+                    final HBox hbox = new HBox(20, btn2, btn3);
                     
                     @Override
                     public void updateItem(Void item, boolean empty) {
@@ -131,14 +151,15 @@ public class AdminController implements Initializable {
                             setGraphic(null);
                             setText(null);
                         } else {
-                            btn1.setOnAction(event -> {
-                                Ligue ligue = getTableView().getItems().get(getIndex());
-                                System.out.println(ligue.getId()
-                                        + "   " + ligue.getNom());
-                            });
                             btn2.setOnAction(event -> {
                                 Ligue ligue = getTableView().getItems().get(getIndex());
                                 System.out.println("Edit Ligue: " + ligue.getNom());
+                                try {
+									editTabLigue(ligue);
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
                             });
                             btn3.setOnAction(event -> {
                                 Ligue ligue = getTableView().getItems().get(getIndex());
