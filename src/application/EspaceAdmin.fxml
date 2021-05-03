@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AdminController">
+   <children>
+      <GridPane layoutX="1.0" prefHeight="600.0" prefWidth="900.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="217.0" minHeight="0.0" prefHeight="49.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="288.0" minHeight="10.0" prefHeight="288.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+         	<HBox alignment="CENTER" spacing="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   				<children>
+            		<Label alignment="CENTER" fx:id="titre" text="Ligue" />
+            		<Button fx:id="ajouterLigue" onAction="#ajouterLigueAction" text="Ajouter Ligue" />
+            	</children>
+            </HBox>
+            <TableView fx:id="tabLigue" prefHeight="151.0" prefWidth="468.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn fx:id="colNomLigue" prefWidth="323.0" text="Nom ligue" />
+                <TableColumn fx:id="colActions" prefWidth="497.0" text="Actions" />
+              </columns>
+            </TableView>
+            
+            <HBox alignment="CENTER" spacing="10" GridPane.rowIndex="2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   				<children>
+            		<Label alignment="CENTER" text="Liste des employés" />
+            		<Button fx:id="ajouterEmploye" onAction="#ajouterEmployeAction" text="Ajouter Employé" />
+            	</children>
+            </HBox>
+            <TableView fx:id="tabEmploye" prefHeight="151.0" prefWidth="468.0" GridPane.columnSpan="3" GridPane.rowIndex="3">
+              <columns>
+                <TableColumn fx:id="colNomEmploye" prefWidth="323.0" text="Nom" />
+                <TableColumn fx:id="colPrenomEmploye" prefWidth="323.0" text="Prénom" />
+                <TableColumn fx:id="colEmailEmploye" prefWidth="323.0" text="Email" />
+              </columns>
+            </TableView>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

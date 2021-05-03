@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddLigueController">
+	<children>
+		<GridPane layoutX="1.0" prefHeight="300.0" prefWidth="300.0">
+	        <columnConstraints>
+	          <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="60.0" />
+	          <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+	        </columnConstraints>
+	        <rowConstraints>
+	          <RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+	          <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="190.0" vgrow="SOMETIMES" />
+	        </rowConstraints>
+	         <children>
+				<Label text="Nom" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			    <TextField fx:id="nomLigue" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+			    
+		        <HBox alignment="top_center" spacing="10" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+	              <children>
+	              	<Button onAction="#handleCancelLigueAction" text="Annuler" />
+			    <Button onAction="#handleAddLigueAction" text="Ajouter" />
+	              </children>
+		      	 </HBox>
+			</children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+		</GridPane>
+	</children>
+</AnchorPane>

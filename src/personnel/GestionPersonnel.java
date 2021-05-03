@@ -110,9 +110,10 @@ public class GestionPersonnel implements Serializable
 		return ligue;
 	}
 
-	public void remove(Ligue ligue)
+	public boolean remove(Ligue ligue) throws SauvegardeImpossible
 	{
-		ligues.remove(ligue);
+		passerelle.delete(ligue);
+		return ligues.remove(ligue);
 	}
 	
 	public boolean hasLigue(Ligue ligue) {

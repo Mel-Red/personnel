@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TestAdminController">
+   <children>
+      <GridPane prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="505.3999908447266" minHeight="0.0" prefHeight="79.19999313354492" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="519.0" minHeight="10.0" prefHeight="138.19998168945312" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="369.0000518798828" minHeight="0.0" prefHeight="135.00001831054686" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="387.20000915527345" minHeight="10.0" prefHeight="256.59996643066404" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="titre" alignment="CENTER" text="Ligue" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Liste des employés" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+            <TableView stylesheets="@application.css" fx:id="tableauEmploye" onSort="#initializeTableauEmploye" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3">
+              <columns>
+                <TableColumn fx:id="colonneNomEmploye" editable="false" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom employé" />
+                <TableColumn fx:id="colonnePrenomEmploye" editable="false" minWidth="150.0" prefWidth="150.0" sortable="false" text="Prénom employé" />
+                  <TableColumn fx:id="colonneMailEmploye" editable="false" minWidth="150.0" prefWidth="75.0" text="Mail employé" />
+                  <TableColumn fx:id="colonneDateDebutEmploye" editable="false" minWidth="150.0" prefWidth="150.0" sortable="false" text="Date début" />
+                  <TableColumn fx:id="colonneDateFinEmploye" editable="false" minWidth="150.0" prefWidth="75.0" sortable="false" text="Date fin" />
+                  <TableColumn fx:id="colonneEstAdminEmploye" editable="false" minWidth="150.0" prefWidth="150.0" sortable="false" text="Est admin" />
+                  <TableColumn fx:id="colonneEstAdminEmploye" editable="false" minWidth="150.0" prefWidth="150.0" sortable="false" text="Supprimer ?" />
+              </columns>
+            </TableView>
+            <TableView stylesheets="@application.css" fx:id="tableauLigue" onSort="#initializeTableauLigue" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn fx:id="colonneNomLigue" editable="false" maxWidth="450.0" minWidth="300.0" prefWidth="300.0" sortable="false" text="Nom ligue" />
+                <TableColumn fx:id="colonneVoirLigue" maxWidth="300.0" minWidth="0.0" prefWidth="300.0" text="Voir ligue" />
+                  <TableColumn fx:id="colonneSupprimerLigue" maxWidth="450.0" minWidth="300.0" prefWidth="300.0" text="Supprimer ligue" />
+              </columns>
+            </TableView>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

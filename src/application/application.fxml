@@ -1,44 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<GridPane fx:controller="application.Controller" 
-    xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
-    styleClass="root">
-    <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
+<GridPane alignment="center" hgap="10" styleClass="root" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+    <padding>
+      <Insets bottom="25" left="25" right="25" top="25" />
+   </padding>
+   <children>
+       
+      <Text id="welcome-text" text="Veuillez entrer vos identifiants pour se connecter" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+         <font>
+            <Font name="Andale Mono" size="13.0" />
+         </font>
+      </Text>
     
-    <Text id="welcome-text" text="Veuillez entrer vos identifiants pour se connecter" 
-         GridPane.columnIndex="0" GridPane.rowIndex="0"
-        GridPane.columnSpan="2"/>
- 
-    <Label text="Identifiant:"
-        GridPane.columnIndex="0" GridPane.rowIndex="1"/>
- 
-    <TextField 
-        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
- 
-    <Label text="Mot de passe:"
-        GridPane.columnIndex="0" GridPane.rowIndex="2"/>
- 
-    <PasswordField fx:id="passwordField" 
-        GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        
-    <HBox spacing="10" alignment="bottom_right" 
-        GridPane.columnIndex="1" GridPane.rowIndex="4">
-        <Button text="Se connecter"     
-        onAction="#handleSubmitButtonAction"/>
-    </HBox>
-
-    <Text fx:id="actiontarget"
-        GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+             <Label text="Adresse mail:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    
+             <TextField fx:id="mail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    
+             <Label text="Mot de passe:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    
+             <PasswordField fx:id="mdp" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+           
+             <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+              <children>
+              	<Button fx:id="buttonConfirmer" onAction="#handleSubmitButtonAction" text="Se connecter" />
+              </children>
+       </HBox>
+      <Label fx:id="erreur" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+   </children>
         
     <stylesheets>
       <URL value="@application.css" />
     </stylesheets>
+    
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 
 </GridPane>
